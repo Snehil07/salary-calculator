@@ -1,0 +1,72 @@
+:root {
+  color-scheme: light;
+  font-family: "DM Sans", sans-serif;
+  background: #f5f7fb;
+  color: #172033;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(38, 193, 159, 0.08), transparent 33rem),
+    #f5f7fb;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: "Manrope", sans-serif;
+}
+
+input,
+select {
+  font: inherit;
+}
+
+input:focus,
+select:focus {
+  outline: 3px solid rgba(34, 183, 151, 0.2);
+  border-color: #16a982;
+}
+
+.card-shadow {
+  box-shadow: 0 18px 55px rgba(31, 45, 73, 0.07);
+}
+
+.soft-shadow {
+  box-shadow: 0 8px 24px rgba(31, 45, 73, 0.06);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 639px) {
+  #salary-help,
+  #pf-help,
+  #professional-tax-help,
+  #inputs-icon,
+  #inputs-subtitle {
+    display: none;
+  }
+
+  #calculator-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  #calculator-form > div {
+    margin-top: 0 !important;
+  }
+
+  #calculator-form > div:last-child {
+    grid-column: 1 / -1;
+  }
+
+  #take-home-card {
+    padding: 1rem;
+  }
+}

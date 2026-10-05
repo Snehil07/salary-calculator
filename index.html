@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Estimate your Indian salary take-home pay, provident fund contribution, and new-regime income tax for FY 2026-27."
+    />
+    <title>Salary & PF Calculator | FY 2026-27</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="antialiased">
+    <main class="mx-auto max-w-[1440px] px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-2">
+      <header class="mb-4 flex items-center justify-between gap-2 sm:mb-4">
+        <a href="#" class="flex w-fit items-center gap-2 sm:gap-3" aria-label="PaisaWise home">
+          <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#122b3a] text-base font-bold text-[#59e0b9] sm:h-10 sm:w-10 sm:text-lg">₹</span>
+          <span>
+            <span class="block font-display text-base font-extrabold tracking-tight text-[#172033] sm:text-lg">paisa<span class="text-[#17a982]">wise</span></span>
+            <span class="hidden text-xs font-medium text-slate-500 sm:block">Salary, made simple</span>
+          </span>
+        </a>
+        <div class="flex w-fit shrink-0 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-semibold text-slate-600 soft-shadow sm:gap-2 sm:px-3.5 sm:py-2 sm:text-xs">
+          <span class="h-1.5 w-1.5 rounded-full bg-[#18b488] sm:h-2 sm:w-2"></span>
+          TAX YEAR <span class="text-slate-900">FY 2026–27</span>
+        </div>
+      </header>
+
+      <section class="mb-3 max-w-3xl sm:mb-4">
+        <p class="mb-1 text-[9px] font-bold uppercase tracking-[0.19em] text-[#159a79] sm:text-[10px]">Your salary, decoded</p>
+        <h1 class="font-display text-2xl font-extrabold leading-tight tracking-tight text-[#172033] sm:text-3xl lg:text-4xl">
+          Advanced salary &amp; PF calculator
+        </h1>
+        <p class="mt-1 hidden max-w-2xl text-[11px] leading-4 text-slate-500 sm:mt-1.5 sm:block sm:text-sm sm:leading-5">
+          See how your provident fund and the new tax regime shape your take-home pay.
+          Adjust your details to get an instant estimate.
+        </p>
+      </section>
+
+      <div class="grid items-start gap-4 lg:grid-cols-[0.74fr_1.8fr] lg:gap-5">
+        <section class="rounded-2xl border border-slate-100 bg-white p-4 card-shadow sm:p-5" aria-labelledby="inputs-title">
+          <div class="mb-5 flex items-center justify-between">
+            <div>
+              <h2 id="inputs-title" class="font-display text-base font-bold text-slate-900">Your details</h2>
+              <p id="inputs-subtitle" class="mt-0.5 text-xs text-slate-500 max-[639px]:hidden">Enter your annual salary details</p>
+            </div>
+            <span id="inputs-icon" class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#eaf8f3] text-[#159a79] max-[639px]:hidden" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M4 19.5h16M6.5 16V9m5.5 7V4m5.5 12v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+
+          <form id="calculator-form" class="space-y-4" novalidate>
+            <div>
+              <label for="salary" class="mb-1.5 block text-xs font-semibold text-slate-700">Total annual base salary (incl. employer PF)</label>
+              <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-base font-semibold text-slate-400">₹</span>
+                <input
+                  id="salary"
+                  name="salary"
+                  type="number"
+                  inputmode="decimal"
+                  min="0"
+                  step="10000"
+                  value="1800000"
+                  class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm font-semibold text-slate-900 transition placeholder:text-slate-400"
+                  aria-describedby="salary-help salary-error"
+                  required
+                />
+              </div>
+              <p id="salary-help" class="mt-1.5 text-[11px] leading-4 text-slate-500">Enter your annual salary including the employer PF component.</p>
+              <p id="salary-error" class="mt-1 hidden text-xs font-medium text-rose-600" role="alert"></p>
+            </div>
+
+            <div>
+              <label for="pf-type" class="mb-1.5 block text-xs font-semibold text-slate-700">PF calculation type</label>
+              <div class="relative">
+                <select id="pf-type" name="pfType" class="w-full appearance-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 pr-10 text-sm font-semibold text-slate-800 transition">
+                  <option value="capped">Statutory Capped PF</option>
+                  <option value="actual" selected>Actual Salary PF</option>
+                </select>
+                <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <p id="pf-help" class="mt-1.5 text-[11px] leading-4 text-slate-500">12% of basic salary, assumed at 50% of monthly base.</p>
+            </div>
+
+            <div>
+              <label for="professional-tax" class="mb-1.5 block text-xs font-semibold text-slate-700">Annual professional tax</label>
+              <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-sm font-semibold text-slate-400">₹</span>
+                <input
+                  id="professional-tax"
+                  name="professionalTax"
+                  type="number"
+                  inputmode="decimal"
+                  min="0"
+                  step="100"
+                  value="0"
+                  class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm font-semibold text-slate-900 transition placeholder:text-slate-400"
+                  aria-describedby="professional-tax-help professional-tax-error"
+                />
+              </div>
+              <p id="professional-tax-help" class="mt-1.5 text-[11px] leading-4 text-slate-500">Deducted from your take-home pay.</p>
+              <p id="professional-tax-error" class="mt-1 hidden text-xs font-medium text-rose-600" role="alert"></p>
+            </div>
+
+            <div class="rounded-xl border border-[#d9f0e8] bg-[#f2fbf7] p-3">
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 text-[#169a79]" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="7.25" stroke="currentColor" stroke-width="1.5" />
+                    <path d="M10 9v4m0-6h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                  </svg>
+                </span>
+                <p class="text-[11px] leading-4 text-slate-600">Base salary includes employer PF. Employee PF matches employer PF; basic is derived using the selected PF method.</p>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <div class="space-y-4">
+          <section id="take-home-card" class="relative overflow-hidden rounded-2xl bg-[#122b3a] p-5 text-white card-shadow sm:p-6" aria-labelledby="take-home-title">
+            <div class="pointer-events-none absolute -right-14 -top-28 h-72 w-72 rounded-full border border-white/[0.07]"></div>
+            <div class="pointer-events-none absolute -right-1 -top-16 h-48 w-48 rounded-full border border-white/[0.07]"></div>
+            <div class="relative">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <p id="take-home-title" class="text-sm font-medium text-slate-300">Monthly in-hand salary</p>
+                  <p class="mt-0.5 text-[11px] text-slate-400">After employer PF, employee PF, income tax and professional tax</p>
+                </div>
+                <span class="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 text-xs font-semibold text-[#71e4c3]">ESTIMATED TAKE-HOME</span>
+              </div>
+              <div class="mt-3 flex flex-wrap items-end justify-between gap-4">
+                <p id="monthly-take-home" class="tabular font-display text-3xl font-extrabold tracking-tight sm:text-4xl" aria-live="polite">₹0</p>
+                <div class="grid min-w-[230px] flex-1 grid-cols-2 gap-2 sm:max-w-sm">
+                <div class="rounded-xl border border-white/10 bg-white/[0.06] p-3">
+                  <p class="text-xs font-medium text-slate-400">Annual in-hand</p>
+                  <p id="annual-take-home" class="tabular mt-1 text-base font-bold text-white">₹0</p>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/[0.06] p-3">
+                  <p class="text-xs font-medium text-slate-400">Effective tax rate</p>
+                  <p id="effective-rate" class="tabular mt-1 text-base font-bold text-white">0%</p>
+                </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="grid grid-cols-2 gap-2 rounded-xl bg-slate-100 p-1 lg:hidden" role="tablist" aria-label="Salary result details">
+            <button id="monthly-tab" type="button" role="tab" aria-selected="true" aria-controls="monthly-panel" class="rounded-lg bg-white px-3 py-2 text-xs font-bold text-slate-800 shadow-sm transition">
+              Monthly details
+            </button>
+            <button id="annual-tab" type="button" role="tab" aria-selected="false" aria-controls="annual-panel" class="rounded-lg px-3 py-2 text-xs font-semibold text-slate-500 transition">
+              Annual tax
+            </button>
+          </div>
+          <div class="grid items-start gap-4 lg:grid-cols-2">
+          <section id="monthly-panel" role="tabpanel" aria-labelledby="monthly-tab monthly-title" class="rounded-2xl border border-slate-100 bg-white p-4 card-shadow sm:p-5">
+            <div class="mb-3 flex items-center justify-between gap-3">
+              <div>
+                <h2 id="monthly-title" class="font-display text-base font-bold text-slate-900">Monthly breakdown</h2>
+                <p class="mt-0.5 text-[11px] text-slate-500">Where your monthly salary goes</p>
+              </div>
+              <span class="rounded-lg bg-slate-100 px-2.5 py-1.5 text-[11px] font-bold uppercase tracking-wide text-slate-500">PER MONTH</span>
+            </div>
+            <div class="divide-y divide-slate-100">
+              <div class="flex items-center justify-between gap-3 py-2.5">
+                <div class="flex items-center gap-3">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#18b488]"></span>
+                  <span class="text-sm font-medium text-slate-600">Employee PF</span>
+                </div>
+                <span id="monthly-employee-pf" class="tabular text-sm font-bold text-slate-900">₹0</span>
+              </div>
+              <div class="flex items-center justify-between gap-3 py-2.5">
+                <div class="flex items-center gap-3">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#5b85e5]"></span>
+                  <span class="text-sm font-medium text-slate-600">Employer PF <span class="text-xs text-slate-400">(deducted from base)</span></span>
+                </div>
+                <span id="monthly-employer-pf" class="tabular text-sm font-bold text-slate-900">₹0</span>
+              </div>
+              <div class="flex items-center justify-between gap-3 py-2.5">
+                <div class="flex items-center gap-3">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#f0ad4e]"></span>
+                  <span class="text-sm font-medium text-slate-600">Income tax <span class="text-xs text-slate-400">(incl. surcharge &amp; cess)</span></span>
+                </div>
+                <span id="monthly-tax" class="tabular text-sm font-bold text-slate-900">₹0</span>
+              </div>
+              <div class="flex items-center justify-between gap-3 py-2.5">
+                <div class="flex items-center gap-3">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#9a78d3]"></span>
+                  <span class="text-sm font-medium text-slate-600">Professional tax</span>
+                </div>
+                <span id="monthly-professional-tax" class="tabular text-sm font-bold text-slate-900">₹0</span>
+              </div>
+              <div class="flex items-center justify-between gap-3 rounded-xl bg-[#f2fbf7] px-3 py-2.5">
+                <span class="text-sm font-bold text-[#147a62]">Net in-hand</span>
+                <span id="monthly-net" class="tabular text-sm font-extrabold text-[#147a62]">₹0</span>
+              </div>
+            </div>
+          </section>
+
+          <section id="annual-panel" role="tabpanel" aria-labelledby="annual-tab annual-title" class="rounded-2xl border border-slate-100 bg-white p-4 card-shadow sm:p-5">
+            <div class="mb-3 flex items-center justify-between gap-3">
+              <div>
+                <h2 id="annual-title" class="font-display text-base font-bold text-slate-900">Annual tax insights</h2>
+                <p class="mt-0.5 text-[11px] text-slate-500">Your estimated tax for FY 2026–27</p>
+              </div>
+              <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#fff5e8] text-[#d38b2e]" aria-hidden="true">
+                <svg width="19" height="19" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 2.5v15m4.2-11.8c-.5-.8-1.5-1.2-3-1.2H8.8a2.3 2.3 0 0 0 0 4.6h2.4a2.3 2.3 0 0 1 0 4.6h-2c-1.5 0-2.5-.4-3-1.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+              </span>
+            </div>
+            <div class="grid gap-2 sm:grid-cols-2">
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] font-medium text-slate-500">Total tax paid</p>
+                <p id="annual-tax-total" class="tabular mt-1 text-base font-bold text-slate-900">₹0</p>
+                <p class="mt-0.5 text-[10px] text-slate-400">Tax + surcharge + cess</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] font-medium text-slate-500">Income tax before surcharge</p>
+                <p id="annual-base-tax" class="tabular mt-1 text-base font-bold text-slate-900">₹0</p>
+                <p id="rebate-note" class="mt-0.5 text-[10px] text-slate-400"></p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] font-medium text-slate-500">Surcharge <span id="surcharge-rate" class="text-slate-400"></span></p>
+                <p id="annual-surcharge" class="tabular mt-1 text-base font-bold text-slate-900">₹0</p>
+                <p id="marginal-relief-note" class="mt-0.5 text-[10px] text-slate-400"></p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] font-medium text-slate-500">Health &amp; education cess <span class="text-slate-400">(4%)</span></p>
+                <p id="annual-cess" class="tabular mt-1 text-base font-bold text-slate-900">₹0</p>
+                <p class="mt-0.5 text-[10px] text-slate-400">On tax and surcharge</p>
+              </div>
+            </div>
+            <div id="pf-alert" class="mt-3 hidden rounded-xl border border-amber-200 bg-amber-50 p-3" role="status">
+              <div class="flex gap-3">
+                <span class="mt-0.5 text-amber-600" aria-hidden="true">!</span>
+                <div>
+                  <p class="text-sm font-bold text-amber-900">Employer PF exceeds the tax-free threshold</p>
+                  <p id="pf-alert-copy" class="mt-1 text-xs leading-5 text-amber-800"></p>
+                </div>
+              </div>
+            </div>
+          </section>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-4 border-t border-slate-200 pt-3 text-[10px] leading-4 text-slate-500">
+        <p><strong class="font-semibold text-slate-600">Estimate only.</strong> This calculator applies the tax slabs and PF assumptions shown above. Actual tax liability may vary based on your salary structure, other income, deductions, and applicable rules. Please consult a tax professional for personalized advice.</p>
+      </footer>
+    </main>
+
+    <script src="calculator.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
